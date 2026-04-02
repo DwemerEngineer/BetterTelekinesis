@@ -202,15 +202,6 @@
           }
         },
         {
-          "id": "bPointWeaponsAndProjectilesForward:Targeting",
-          "text": "$BT_PointForward_Text",
-          "type": "toggle",
-          "help": "$BT_PointForward_Help",
-          "valueOptions": {
-            "sourceType": "ModSettingBool"
-          }
-        },
-        {
           "id": "iTelekinesisLabelMode:Targeting",
           "text": "$BT_LabelMode_Text",
           "type": "enum",
@@ -284,6 +275,15 @@
           "text": "$BT_AutoLearnVariants_Text",
           "type": "toggle",
           "help": "$BT_AutoLearnVariants_Help",
+          "valueOptions": {
+            "sourceType": "ModSettingBool"
+          }
+        },
+        {
+          "id": "bAutoLearnSwordSpells:Tweaks",
+          "text": "$BT_AutoLearnSwordSpells_Text",
+          "type": "toggle",
+          "help": "$BT_AutoLearnSwordSpells_Help",
           "valueOptions": {
             "sourceType": "ModSettingBool"
           }
@@ -376,6 +376,18 @@
             "step": 0.01,
             "formatString": "{2}",
             "sourceType": "ModSettingFloat"
+          }
+        },
+         {
+          "id": "bKeepCrosshairClear:MultiSettings",
+          "text": "$BT_KeepCrosshairClear_Text",
+          "type": "slider",
+          "help": "$BT_KeepCrosshairClear_Help",
+          "valueOptions": {
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "sourceType": "ModSettingBool"
           }
         },
         {
@@ -540,9 +552,9 @@
         },
         {
           "id": "bActorDamageToggleEnabled:Enemy",
-          "text": "$BT_ActorDamageEabled_Text",
+          "text": "$BT_ActorDamageEnabled_Text",
           "type": "toggle",
-          "help": "$BT_ActorDamageEabled_Help",
+          "help": "$BT_ActorDamageEnabled_Help",
           "valueOptions": {
             "sourceType": "ModSettingBool"
           }

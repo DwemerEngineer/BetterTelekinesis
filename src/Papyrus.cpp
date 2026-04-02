@@ -1,10 +1,12 @@
 #include "BetterTelekinesis/Papyrus.h"
+#include "BetterTelekinesis/Main.h"
 
 namespace Papyrus
 {
 	void OnConfigClose(RE::TESQuest*)
 	{
 		BetterTelekinesis::Config::ReadSettings();
+		BetterTelekinesis::BetterTelekinesisPlugin::ApplyTelekinesisSettings();
 	}
 
 	bool Register(RE::BSScript::IVirtualMachine* a_vm)

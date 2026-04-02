@@ -32,6 +32,7 @@ namespace BetterTelekinesis
 		static inline bool TelekinesisLaunchObjectSound = true;
 		static inline bool AutoLearnTelekinesisSpell = false;
 		static inline bool AutoLearnTelekinesisVariants = true;
+		static inline bool AutoLearnSwordSpells = false;
 		static inline bool AlwaysLaunchObjectsEvenWhenNotFinishedPulling = false;
 		static inline bool DontLaunchIfRunningOutOfMagicka = true;
 		static inline bool PointWeaponsAndProjectilesForward = true;
@@ -49,6 +50,7 @@ namespace BetterTelekinesis
 		static inline int TelekinesisMaxObjects = 10;
 		static inline double TelekinesisObjectSpread = 15.0;
 		static inline double MultiObjectHoverAmount = 4.0;
+		static inline bool KeepCrosshairClear = false;
 
 		static inline double ActorPullSpeed = 8000.0;
 		static inline double ActorThrowForce = 2.0;
@@ -57,7 +59,7 @@ namespace BetterTelekinesis
 		static inline double HoldActorDamage = 0.0;
 		static inline bool ActorDamageToggleEnabled = false;
 		static inline int ToggleActorDamageHotkey = 58;
-		
+
 		static inline bool GrabActorNodeNearest = true;
 		static inline std::string GrabActorNodeExclude = "";
 		static inline std::string GrabActorNodePriority = "NPC Spine2 [Spn2]";
@@ -76,9 +78,10 @@ namespace BetterTelekinesis
 		static inline std::string TelekinesisSpells = "1A4CC:Skyrim.esm;873:BetterTelekinesis.esp;874:BetterTelekinesis.esp;876:BetterTelekinesis.esp";
 		static inline std::string TelekinesisPrimary = "1A4CC:Skyrim.esm";
 		static inline std::string TelekinesisSecondary = "873:BetterTelekinesis.esp;874:BetterTelekinesis.esp;876:BetterTelekinesis.esp";
-		static inline std::string SpellInfo_Reach = "876:BetterTelekinesis.esp;875:BetterTelekinesis.esp";
-		static inline std::string SpellInfo_One = "873:BetterTelekinesis.esp;806:BetterTelekinesis.esp";
-		static inline std::string SpellInfo_NPC = "874:BetterTelekinesis.esp;809:BetterTelekinesis.esp";
+		static inline std::string SwordSpells = "871:BetterTelekinesis.esp;872:BetterTelekinesis.esp";
+		static inline std::string SpellInfo_Reach = ";876:BetterTelekinesis.esp;875:BetterTelekinesis.esp";
+		static inline std::string SpellInfo_One = ";873:BetterTelekinesis.esp;806:BetterTelekinesis.esp";
+		static inline std::string SpellInfo_NPC = ";874:BetterTelekinesis.esp;809:BetterTelekinesis.esp";
 		static inline std::string SpellInfo_Barr = "879:BetterTelekinesis.esp;871:BetterTelekinesis.esp;807:BetterTelekinesis.esp";
 		static inline std::string SpellInfo_Blast = "87A:BetterTelekinesis.esp;872:BetterTelekinesis.esp;808:BetterTelekinesis.esp";
 		static inline std::string SpellInfo_Normal = "A26E5:Skyrim.esm;1A4CC:Skyrim.esm;800:BetterTelekinesis.esp";

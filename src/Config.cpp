@@ -94,6 +94,7 @@ namespace BetterTelekinesis
 				ReadBoolSetting(ini, "Tweaks", "bTelekinesisLaunchObjectSound", TelekinesisLaunchObjectSound);
 				ReadBoolSetting(ini, "Tweaks", "bAutoLearnTelekinesisSpell", AutoLearnTelekinesisSpell);
 				ReadBoolSetting(ini, "Tweaks", "bAutoLearnTelekinesisVariants", AutoLearnTelekinesisVariants);
+				ReadBoolSetting(ini, "Tweaks", "bAutoLearnSwordSpells", AutoLearnSwordSpells);
 				ReadBoolSetting(ini, "Tweaks", "bAlwaysLaunchObjectsEvenWhenNotFinishedPulling", AlwaysLaunchObjectsEvenWhenNotFinishedPulling);
 				ReadBoolSetting(ini, "Tweaks", "bDontLaunchIfRunningOutOfMagicka", DontLaunchIfRunningOutOfMagicka);
 				ReadBoolSetting(ini, "Tweaks", "bPointWeaponsAndProjectilesForward", PointWeaponsAndProjectilesForward);
@@ -111,6 +112,7 @@ namespace BetterTelekinesis
 				ReadIntSetting(ini, "MultiSettings", "iTelekinesisMaxObjects", TelekinesisMaxObjects);
 				ReadDoubleSetting(ini, "MultiSettings", "fTelekinesisObjectSpread", TelekinesisObjectSpread);
 				ReadDoubleSetting(ini, "MultiSettings", "fMultiObjectHoverAmount", MultiObjectHoverAmount);
+				ReadBoolSetting(ini, "MultiSettings", "bKeepCrosshairClear", KeepCrosshairClear);
 				
 				ReadBoolSetting(ini, "Targeting", "bOverwriteTargetPicker", OverwriteTargetPicker);
 				ReadDoubleSetting(ini, "Targeting", "fObjectTargetPickerRange", ObjectTargetPickerRange);
@@ -201,6 +203,7 @@ namespace BetterTelekinesis
 		ini.SetLongValue("Tweaks", "bTelekinesisLaunchObjectSound", TelekinesisLaunchObjectSound, ";If you set this false it will disable playing the sound that happens when you launch an object with telekinesis.");
 		ini.SetLongValue("Tweaks", "bAutoLearnTelekinesisSpell", AutoLearnTelekinesisSpell, ";If set to true it will automatically add the telekinesis spell to player if they don't have it.");
 		ini.SetLongValue("Tweaks", "bAutoLearnTelekinesisVariants", AutoLearnTelekinesisVariants, ";This will learn the secondary telekinesis spells when you have the primary spell.");
+		ini.SetLongValue("Tweaks", "bAutoLearnSwordSpells", AutoLearnSwordSpells, ";This will learn the sword spells when you have the primary telekinesis spell.");
 		ini.SetLongValue("Tweaks", "bAlwaysLaunchObjectsEvenWhenNotFinishedPulling", AlwaysLaunchObjectsEvenWhenNotFinishedPulling, ";There's a mechanic where if you pull object to you with telekinesis but release the spell before the object is finished being pulled to you it gets dropped instead of launched. Here you can overwrite the behavior and force it to always to be launched even when not finished pulling yet.");
 		ini.SetLongValue("Tweaks", "bDontLaunchIfRunningOutOfMagicka", DontLaunchIfRunningOutOfMagicka, ";When the spell ends and it's time to launch objects check if you are out of magicka and if yes then don't launch?");
 		ini.SetLongValue("Tweaks", "bPointWeaponsAndProjectilesForward", PointWeaponsAndProjectilesForward, ";When holding objects in telekinesis then if they are weapon or projectile point them forward, for maximum coolness.");
@@ -218,6 +221,7 @@ namespace BetterTelekinesis
 		ini.SetLongValue("MultiSettings", "iTelekinesisMaxObjects", TelekinesisMaxObjects, ";How many objects you can hold with telekinesis at once. These are objects and not actors.");
 		ini.SetDoubleValue("MultiSettings", "fTelekinesisObjectSpread", TelekinesisObjectSpread, ";When you have multiple objects telekinesised, they will spread out by this much. This is degrees rotation not actual in-game units.");
 		ini.SetDoubleValue("MultiSettings", "fMultiObjectHoverAmount", MultiObjectHoverAmount, ";When enabling multi object telekinesis the objects will hover around a bit to make it look cooler. This is the amount of distance they can hover from origin.");
+		ini.SetDoubleValue("MultiSettings", "bKeepCrosshairClear", KeepCrosshairClear, ";When enabled objects will not appear in the crosshair and will instead start offset, keeping the middle clear.");
 
 		ini.SetDoubleValue("Enemy", "fActorPullSpeed", ActorPullSpeed, ";The speed at which actors are pulled to caster when using the grab actor effect archetype.");
 		ini.SetDoubleValue("Enemy", "fActorThrowForce", ActorThrowForce, ";The force at which actors are thrown, compared to vanilla.");
