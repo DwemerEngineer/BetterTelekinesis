@@ -308,6 +308,46 @@ namespace BetterTelekinesis
 				}
 			}
 		}
+
+		if (Config::AutoLearnSwordSpells) {
+			auto prim = PrimarySpells;
+			if (prim == nullptr) {
+				return;
+			}
+
+			auto swords = SwordSpells;
+			if (swords == nullptr) {
+				return;
+			}
+
+			bool has = false;
+			for (auto form : prim->getAll()) {
+				auto sp = form->As<RE::SpellItem>();
+				if (sp == nullptr) {
+					continue;
+				}
+
+				if (plr->HasSpell(sp)) {
+					has = true;
+					break;
+				}
+			}
+
+			if (!has) {
+				return;
+			}
+
+			for (auto form : swords->getAll()) {
+				auto sp = form->As<RE::SpellItem>();
+				if (sp == nullptr) {
+					continue;
+				}
+
+				if (!plr->HasSpell(sp)) {
+					plr->AddSpell(sp);
+				}
+			}
+		}
 	}
 
 
@@ -634,6 +674,9 @@ namespace BetterTelekinesis
 		}
 		if (!Config::TelekinesisSecondary.empty()) {
 			SecondarySpells = Util::CachedFormList::TryParse(Config::TelekinesisSecondary, "BetterTelekinesis", "TelekinesisSecondary", false);
+		}
+		if (!Config::SwordSpells.empty()) {
+			SwordSpells = Util::CachedFormList::TryParse(Config::SwordSpells, "BetterTelekinesis", "SwordSpells", false);
 		}
 
 		if (Config::OverwriteTelekinesisSpellBaseCost >= 0.0) {
@@ -2497,20 +2540,25 @@ namespace BetterTelekinesis
 	void BetterTelekinesisPlugin::UpdatePointForward(RE::TESObjectREFR* refr)
 	{
 		if (refr == nullptr) {
+			logger::debug("Bad ref while trying to point forward");
 			return;
 		}
 
 		auto plr = RE::PlayerCharacter::GetSingleton();
 		if (plr == nullptr) {
+			logger::debug("Plr was null");
 			return;
 		}
 
 		auto pcam = RE::PlayerCamera::GetSingleton();
 		if (pcam == nullptr) {
+			logger::debug("Plr camera was null");
 			return;
 		}
 
 		RE::NiPoint3 AngleWanted;
+
+		auto oldAngle = refr->GetAngle();
 
 		if (!REL::Module::IsVR()) {
 			RE::NiQuaternion qt;
@@ -2527,6 +2575,9 @@ namespace BetterTelekinesis
 			mat.ToEulerAnglesXYZ(AngleWanted);
 		}
 
+		logger::debug("Wanted Angle: {:f} {:f} {:f}", AngleWanted.x, AngleWanted.y, AngleWanted.z);
+		logger::debug("Current Angle: {:f} {:f} {:f}", oldAngle.x, oldAngle.y, oldAngle.z);
+
 		refr->SetAngle(AngleWanted);
 		refr->Update3DPosition(true);
 	}
@@ -2539,6 +2590,8 @@ namespace BetterTelekinesis
 
 		if (Config::PointWeaponsAndProjectilesForward) {
 			if (obj->As<RE::TESObjectWEAP>() != nullptr || obj->As<RE::Projectile>() != nullptr || IsOurItem(obj->GetBaseObject()) != OurItemTypes::None) {
+				logger::debug("Update Point Forward for {:X}", obj->GetFormID());
+
 				UpdatePointForward(obj);
 			}
 		}
@@ -2850,7 +2903,7 @@ namespace BetterTelekinesis
 			return;
 		}
 
-		if (!CalculateSwordPlacePosition(100.0f, false, ghost)) {
+		if (!CalculateSwordPlacePosition(50.0f, false, ghost)) {
 			return;
 		}
 
@@ -2991,6 +3044,7 @@ namespace BetterTelekinesis
 				bool had = false;
 				for (auto& co : ignore_ls) {
 					if (co != nullptr && RaycastHelper::IsRaycastHitNodeTest(rp, co)) {
+						logger::debug("ignored raycast hit on node {}", co->name.c_str() ? co->name.c_str() : "");
 						had = true;
 						break;
 					}
@@ -3021,6 +3075,12 @@ namespace BetterTelekinesis
 		SwordData::temp2.x = end[0];
 		SwordData::temp2.y = end[1];
 		SwordData::temp2.z = end[2];
+
+		RE::NiPoint3 playerVel;
+		plr->GetLinearVelocity(playerVel);
+
+		SwordData::temp2.x += playerVel.x * 0.1f;
+		SwordData::temp2.y += playerVel.y * 0.1f;
 
 		return true;
 	}

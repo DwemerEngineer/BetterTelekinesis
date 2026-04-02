@@ -3,7 +3,7 @@ message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 
 project(
   Better-Telekinesis-NG
-  VERSION 5.0.0
+  VERSION 5.0.4
   LANGUAGES CXX
 )
 

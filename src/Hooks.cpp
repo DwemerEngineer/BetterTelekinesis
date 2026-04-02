@@ -545,6 +545,9 @@ namespace BetterTelekinesis
 					return;
 				}
 
+				if (Config::KeepCrosshairClear)
+					indexOfMe++;
+
 				int stepX = 0;
 				int stepY = 0;
 				BetterTelekinesisPlugin::SelectRotationOffset(indexOfMe, stepX, stepY);

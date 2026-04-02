@@ -180,6 +180,8 @@ namespace BetterTelekinesis
 
 		inline static Util::CachedFormList* SecondarySpells = nullptr;
 
+		inline static Util::CachedFormList* SwordSpells = nullptr;
+
 		inline static std::vector<std::string> grabActorNodes;
 
 		inline static std::unordered_set<std::string, Util::case_insensitive_unordered_set::hash> excludeActorNodes;

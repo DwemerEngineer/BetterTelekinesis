@@ -296,29 +296,16 @@ namespace BetterTelekinesis
 
 	bool RaycastHelper::IsRaycastHitNodeTest(const Raycast::RayResult& r, RE::NiNode* node)
 	{
-		bool result = false;
-		try {
-			auto o = r.hitObject;
-			int tries = 0;
-			while (o != nullptr && tries++ < 10) {
-				const auto userdata = o->GetUserData();
-				const auto nodeUserData = node->GetUserData();
-				if (userdata != nullptr && nodeUserData != nullptr) {
-					auto baseForm = userdata->GetOwner();
-					auto nodeBaseForm = nodeUserData->GetOwner();
-					if (baseForm != nullptr && nodeBaseForm != nullptr) {
-						{
-							if (baseForm->formID == nodeBaseForm->formID) {
-								result = true;
-							}
-						}
-						break;
-					}
-				}
-				o = o->parent;
+		auto obj = r.hitObject;
+		int tries = 0;
+		while (obj != nullptr && tries++ < 10) {
+			if (obj == node) {
+				return true;
 			}
-		} catch (...) {
+
+			obj = obj->parent;
 		}
-		return result;
+
+		return false;
 	}
 }
